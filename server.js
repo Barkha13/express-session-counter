@@ -3,14 +3,14 @@ var path = require("path");
 var session = require('express-session');
 var app = express();
 
-<<<<<<< HEAD
+
 app.use(session({secret: 'secretcode'})); 
 
 // setting up ejs and our views folder
-=======
+
 // use it!
 app.use(session({secret: 'secretcode'})); 
->>>>>>> 931985eb4d72ac3b691d390ac969bd040dcd004c
+
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 
