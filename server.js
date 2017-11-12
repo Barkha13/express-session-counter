@@ -18,7 +18,13 @@ app.set('view engine', 'ejs');
 
 // root route to render the counter.ejs view
 app.get('/', function(req, res) {
-    req.session.count ++;
+    if (!req.session.count){
+        req.session.count = 0;
+    }
+    
+    req.session.count++;
+    
+    // req.session.count = req.session.count ? req.session.count + 1 : 1;
     console.log('count is...',req.session.count);
     res.render("counter", {count: req.session.count});
 })
