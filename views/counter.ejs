@@ -9,5 +9,11 @@
 <body>
     <h1>Counter</h1>
     <p><%=count%> times</p>
+    <form action="/add_two" method="post">
+        <button type="submit" name="add">Add +2</button>
+    </form>
+    <form action="/reset" method="post">
+        <button type="submit" name="reset">Reset</button>
+    </form>
 </body>
 </html>

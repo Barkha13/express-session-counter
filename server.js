@@ -1,16 +1,9 @@
 var express = require("express");
 var path = require("path");
 var session = require('express-session');
-// create the express app
 var app = express();
-// var bodyParser = require('body-parser');
 
 app.use(session({secret: 'secretcode'})); 
-// use it!
-// app.use(bodyParser.urlencoded({ extended: true }));
-
-// static content
-// app.use(express.static(path.join(__dirname, "./static")));
 
 // setting up ejs and our views folder
 app.set('views', path.join(__dirname, './views'));
@@ -21,12 +14,22 @@ app.get('/', function(req, res) {
     if (!req.session.count){
         req.session.count = 0;
     }
-    
-    req.session.count++;
-    
+    req.session.count += 1;
     // req.session.count = req.session.count ? req.session.count + 1 : 1;
     console.log('count is...',req.session.count);
     res.render("counter", {count: req.session.count});
+})
+
+app.post('/add_two', function(req,res){
+    req.session.count += 2;
+    console.log('count is...',req.session.count);
+    res.redirect('/');
+})
+
+app.post('/reset', function(req,res){
+    req.session.count = 1;
+    console.log('count is...',req.session.count);
+    res.redirect('/');
 })
 
 app.listen(8000, function() {
